@@ -4,8 +4,16 @@ import java.util.Objects;
 
 import com.caiopivetta6.domain.enums.StatePayment;
 
-public abstract class Payment {
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Payment {
+	
+	@Id
 	private Integer id;
 	private Integer state;
 	

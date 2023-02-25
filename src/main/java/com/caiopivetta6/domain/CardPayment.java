@@ -4,6 +4,9 @@ import java.time.Instant;
 
 import com.caiopivetta6.domain.enums.StatePayment;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class CardPayment extends Payment {
 
 	private Instant date_payment;

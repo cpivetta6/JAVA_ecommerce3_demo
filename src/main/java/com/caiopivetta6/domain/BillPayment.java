@@ -15,8 +15,8 @@ public class BillPayment extends Payment {
 		
 	}
 
-	public BillPayment(Integer id, StatePayment state, Instant datePayment) {
-		super(id, state);
+	public BillPayment(Integer id, StatePayment state, Order order, Instant datePayment) {
+		super(id, state, order);
 		this.datePayment = datePayment;
 		// TODO Auto-generated constructor stub
 	}

@@ -5,10 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,7 +30,16 @@ public class Client implements Serializable {
 	private String name;
 	private String email;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id")
+	private Address address;
+	
+	@ElementCollection
+	@CollectionTable(name = "phone")
 	private List<String> phone = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "client")
+	private List<Order> orders;
 	
 	public Client() {
 		
@@ -35,6 +50,24 @@ public class Client implements Serializable {
 		this.id = id;
 		this.name = name;
 		this.email = email;
+	}
+	
+	
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public Integer getId() {

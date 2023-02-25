@@ -8,6 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToOne;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -17,14 +20,30 @@ public abstract class Payment {
 	private Integer id;
 	private Integer state;
 	
+	@OneToOne
+	@JoinColumn(name = "order_id")
+	@MapsId
+	private Order order;
+	
 	public Payment() {
 		
 	}
 
-	public Payment(Integer id, StatePayment state) {
+	public Payment(Integer id, StatePayment state, Order order) {
 		super();
 		this.id = id;
 		this.state = state.getCode();
+		this.setOrder(order);
+	}
+	
+	
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 
 	public Integer getId() {

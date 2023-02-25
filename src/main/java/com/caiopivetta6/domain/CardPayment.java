@@ -15,8 +15,8 @@ public class CardPayment extends Payment {
 		
 	}
 
-	public CardPayment(Integer id, StatePayment state, Instant date_payment) {
-		super(id, state);
+	public CardPayment(Integer id, StatePayment state, Order order, Instant date_payment) {
+		super(id, state, order);
 		this.date_payment = date_payment;
 		
 	}

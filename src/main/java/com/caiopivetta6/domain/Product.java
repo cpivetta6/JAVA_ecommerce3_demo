@@ -1,12 +1,18 @@
 package com.caiopivetta6.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +28,13 @@ public class Product implements Serializable{
 	private String name;
 	private Double price;
 	
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
+	
+	@OneToMany(mappedBy = "id.product")
+	private List<OrderItem> orderitem = new ArrayList<>();
+	
 	public Product() {
 		
 	}
@@ -31,6 +44,23 @@ public class Product implements Serializable{
 		this.id = id;
 		this.name = name;
 		this.price = price;
+	}
+	
+		
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public List<OrderItem> getOrderitem() {
+		return orderitem;
+	}
+
+	public void setOrderitem(List<OrderItem> orderitem) {
+		this.orderitem = orderitem;
 	}
 
 	public Integer getId() {

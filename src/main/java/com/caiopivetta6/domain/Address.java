@@ -7,6 +7,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +28,14 @@ public class Address implements Serializable{
 	private String street;
 	private String zcode;
 	
+	@ManyToOne
+	@JoinColumn(name = "city")
+	private City city;
+	
+	@OneToOne(mappedBy = "address")
+	private Client client;
+	
+	
 	public Address() {
 		
 	}
@@ -35,6 +47,25 @@ public class Address implements Serializable{
 		this.square = square;
 		this.street = street;
 		this.zcode = zcode;
+	}
+	
+	
+	
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
 	}
 
 	public Integer getId() {

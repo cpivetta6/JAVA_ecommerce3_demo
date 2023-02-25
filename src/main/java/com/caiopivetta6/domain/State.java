@@ -1,12 +1,18 @@
 package com.caiopivetta6.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,6 +26,10 @@ public class State implements Serializable {
 	private Integer id;
 	private String name;
 	
+	@OneToMany(mappedBy = "state")
+	private List<City> cities = new ArrayList<>();
+	
+	
 	public State() {
 		
 	}
@@ -28,6 +38,17 @@ public class State implements Serializable {
 		super();
 		this.id = id;
 		this.name = name;
+	}
+	
+	
+	
+
+	public List<City> getCities() {
+		return cities;
+	}
+
+	public void setCities(List<City> cities) {
+		this.cities = cities;
 	}
 
 	public Integer getId() {

@@ -7,6 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +24,11 @@ public class City implements Serializable {
 	private Integer id;
 	private String name;
 	
+	@ManyToOne
+	@JoinColumn(name = "state_id")
+	private State state;
+	
+	
 	public City() {
 		
 	}
@@ -29,6 +37,16 @@ public class City implements Serializable {
 		super();
 		this.id = id;
 		this.name = name;
+	}
+	
+	
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
 	}
 
 	public Integer getId() {

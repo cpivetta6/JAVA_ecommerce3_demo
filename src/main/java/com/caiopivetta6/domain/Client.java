@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
@@ -30,6 +32,7 @@ public class Client implements Serializable {
 	private String name;
 	private String email;
 	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
 	private Address address;
@@ -38,6 +41,7 @@ public class Client implements Serializable {
 	@CollectionTable(name = "phone")
 	private List<String> phone = new ArrayList<>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders;
 	

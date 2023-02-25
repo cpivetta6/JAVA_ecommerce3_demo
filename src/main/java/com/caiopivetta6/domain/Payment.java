@@ -3,6 +3,7 @@ package com.caiopivetta6.domain;
 import java.util.Objects;
 
 import com.caiopivetta6.domain.enums.StatePayment;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -20,6 +21,7 @@ public abstract class Payment {
 	private Integer id;
 	private Integer state;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "order_id")
 	@MapsId

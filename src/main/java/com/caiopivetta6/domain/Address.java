@@ -3,6 +3,8 @@ package com.caiopivetta6.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,6 +34,7 @@ public class Address implements Serializable{
 	@JoinColumn(name = "city")
 	private City city;
 	
+	@JsonIgnore
 	@OneToOne(mappedBy = "address")
 	private Client client;
 	

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,10 +30,12 @@ public class Product implements Serializable{
 	private String name;
 	private Double price;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "id.product")
 	private List<OrderItem> orderitem = new ArrayList<>();
 	

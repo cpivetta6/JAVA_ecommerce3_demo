@@ -36,6 +36,16 @@ public class Category implements Serializable{
 		this.id = id;
 		this.name = name;
 	}
+	
+	
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
 
 	public Integer getId() {
 		return id;
